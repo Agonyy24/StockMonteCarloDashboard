@@ -70,7 +70,7 @@ server <- function(input, output) {
               main = "Simulated Price Paths", xlab = "Days", ylab = "Price")
       lines(apply(sim, 1, mean), col = "red", lwd = 2)
     })
-    
+
     output$histPlot <- renderPlot({
       hist(final_prices, breaks = 40, col = "lightblue", border = "white",
            main = "Distribution of Final Prices", xlab = "Simulated Final Price")
