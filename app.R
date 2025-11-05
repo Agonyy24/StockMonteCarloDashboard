@@ -2,37 +2,40 @@ library(shiny)
 library(dplyr)
 library(ggplot2)
 
-# --- Load data helper ---
-getData <- function(symbol) {
-  file_path <- paste0("data/", symbol, "_d0101201819122019.csv")
-  df <- read.csv(file_path, sep = ",", dec = ".")
-  df$Date <- as.Date(df$Date)
-  return(df)
-}
+# --- Loading Functions  ---
 
-# --- Monte Carlo Simulation ---
-simulateMonteCarlo <- function(prices, days = 252, paths = 1000) {
-  returns <- diff(log(prices))
-  mu <- mean(returns, na.rm = TRUE)
-  sigma <- sd(returns, na.rm = TRUE)
-  S0 <- tail(prices, 1)
-  
-  sim <- matrix(rnorm(days * paths, mean = mu, sd = sigma), ncol = paths)
-  sim_prices <- S0 * exp(apply(sim, 2, cumsum))
-  return(sim_prices)
+source("R/simulate_montecarlo.R")
+source("R/get_stock_data.R")
+
+getData <- function(symbol) {
+  df <- get_stock_data(symbol)
+  if (is.null(df)) {
+    stop("Data download failed for: ", symbol)
+  }
+  return(df)
 }
 
 # ---------------- UI ----------------
 ui <- fluidPage(
   includeCSS("www/style.css"),
-  titlePanel("📊 Stock Risk Dashboard"),
+  titlePanel("Stock MonteCarlo Sim Dashboard"),
   
   navbarPage("",
              tabPanel("Monte Carlo Simulation",
                       sidebarLayout(
                         sidebarPanel(
-                          selectInput("stock", "Choose Stock:", 
-                                      choices = c("Google" = "goog", "Apple" = "aapl")),
+                          selectInput("stock", "Choose Stock:",
+                                      choices = c("Google" = "GOOG",
+                                                  "Apple" = "AAPL",
+                                                  "Microsoft" = "MSFT",
+                                                  "Amazon" = "AMZN",
+                                                  "Tesla" = "TSLA",
+                                                  "NVIDIA" = "NVDA",
+                                                  "Meta" = "META",
+                                                  "Intel" = "INTC",
+                                                  "Netflix" = "NFLX",
+                                                  "Coca-Cola" = "KO"),
+                                      selected = "GOOG"),
                           numericInput("days", "Days to Simulate:", 252, min = 50, max = 1000),
                           numericInput("paths", "Number of Simulations:", 1000, min = 100, max = 5000),
                           actionButton("run", "Run Simulation")
@@ -49,6 +52,7 @@ ui <- fluidPage(
 )
 
 # ---------------- SERVER ----------------
+
 server <- function(input, output) {
   
   observeEvent(input$run, {

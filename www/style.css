@@ -1,0 +1,115 @@
+/* ======== GLOBAL STYLING ======== */
+
+body {
+  background: linear-gradient(to right, #eaf1fb, #ffffff);
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: #222;
+  margin: 0;
+  padding: 0;
+}
+
+/* ======== HEADER ======== */
+h1, h2, h3 {
+  font-weight: 600;
+  color: #0b3d91;
+  text-align: center;
+  margin-top: 15px;
+}
+
+h1 {
+  font-size: 2em;
+  letter-spacing: 0.5px;
+}
+
+h3 {
+  margin-bottom: 10px;
+}
+
+/* ======== NAVBAR ======== */
+.navbar-default {
+  background-color: #0b3d91 !important;
+  border: none;
+  border-radius: 0;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #ffffff !important;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+  background-color: #1d56c0 !important;
+}
+
+.navbar-default .navbar-brand {
+  color: #ffffff !important;
+  font-weight: bold;
+}
+
+/* ======== PANELS ======== */
+.panel, .well {
+  background: #f8faff;
+  border: 1px solid #d6e0f5;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* ======== SIDEBAR ======== */
+.form-control, .selectize-input {
+  border-radius: 6px !important;
+  border: 1px solid #c2d1f0;
+  box-shadow: none !important;
+}
+
+.btn {
+  background-color: #0b3d91;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #1d56c0;
+  color: #fff;
+}
+
+/* ======== PLOTS ======== */
+#mcPlot, #histPlot {
+  border: 1px solid #cbd6f0;
+  border-radius: 6px;
+  background-color: #ffffff;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+  padding: 10px;
+}
+
+/* ======== TEXT OUTPUT ======== */
+pre, code, .verbatim {
+  background-color: #f1f5ff;
+  border-radius: 6px;
+  padding: 10px;
+  border: 1px solid #dbe4ff;
+  color: #003366;
+  font-size: 0.9em;
+}
+
+/* ======== FOOTER ======== */
+.footer {
+  margin-top: 40px;
+  padding: 10px;
+  text-align: center;
+  font-size: 0.85em;
+  color: #777;
+  border-top: 1px solid #e1e4ec;
+}
+
+.footer a {
+  color: #0b3d91;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
