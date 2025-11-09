@@ -10,17 +10,29 @@ if (!requireNamespace("quantmod", quietly = TRUE)) {
 library(quantmod)
 
 # Function to download historical data
-get_stock_data <- function(symbol, from = "2018-01-01", to = Sys.Date()) {
+get_stock_data <- function(symbol, start_date = Sys.Date() - 365*3) {
   tryCatch({
     data_env <- new.env()
-    quantmod::getSymbols(Symbols = symbol, src = "yahoo",
-                         from = from, to = to, env = data_env, auto.assign = TRUE)
+    
+    quantmod::getSymbols(
+      Symbols = symbol,
+      src = "yahoo",
+      from = start_date,
+      to = Sys.Date(),
+      env = data_env,
+      auto.assign = TRUE
+    )
+    
     df_raw <- data_env[[symbol]]
-    df <- data.frame(Date = index(df_raw),
-                     coredata(df_raw))
+    df <- data.frame(
+      Date = index(df_raw),
+      coredata(df_raw)
+    )
+    
     df <- na.omit(df)
-    # Rename columns to generic form
+    
     colnames(df) <- c("Date", "Open", "High", "Low", "Close", "Volume", "Adjusted")
+    
     return(df)
   },
   error = function(e) {
