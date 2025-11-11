@@ -20,4 +20,4 @@ Visualize risk metrics with interactive plots and dynamic summaries. It provides
 
 ### U.S. Market Simulation
 
-![US Simulation Screenshot](screenshots/sc1.png) ![US Simulation Screenshot](screenshots/sc2.png)
+![US Simulation Screenshot](screenshots/sc1.png)![US Simulation Screenshot](screenshots/sc2.png)
