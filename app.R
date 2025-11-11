@@ -229,7 +229,7 @@ ui <- fluidPage(
                  # Degrees of freedom slider
                  sliderInput(
                    "df", "Degrees of Freedom:",
-                   min = 2, max = 100, value = 5, step = 1
+                   min = 3, max = 100, value = 5, step = 1
                  ),
                  
                  # Number of sims slider
@@ -297,7 +297,7 @@ server <- function(input, output) {
       
       legend("topleft",
              legend = c("Simulated Paths", "Mean Path"),
-             col = c(rgb(0, 0, 1, 0.3), "red"),
+             col = c("lightyellow", "red"),
              lwd = c(1, 2),
              bty = "n")
     })
@@ -373,7 +373,7 @@ server <- function(input, output) {
       
       legend("topleft",
              legend = c("Simulated Paths", "Mean Path"),
-             col = c(rgb(0, 0, 1, 0.3), "red"),
+             col = c("lightyellow", "red"),
              lwd = c(1, 2),
              bty = "n")
     })
@@ -442,7 +442,7 @@ server <- function(input, output) {
       
       legend("topleft",
              legend = c("Simulated Paths", "Mean Path"),
-             col = c(rgb(0, 0, 1, 0.3), "red"),
+             col = c("lightyellow", "red"),
              lwd = c(1, 2),
              bty = "n")
     })

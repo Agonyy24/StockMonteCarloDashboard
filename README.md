@@ -2,12 +2,10 @@
 
 An interactive **Shiny application** built in **R**, designed to simulate stock price movements using **Monte Carlo methods** and measure financial risk via **Value at Risk (VaR)** and **Expected Shortfall (ES)**.
 
-
 ## Overview
 
 This dashboard allows users to simulate future stock prices based on historical market data, compare U.S. and Polish markets. Use both **normal** and **Student-t** distributions to analyze volatility.\
 Visualize risk metrics with interactive plots and dynamic summaries. It provides a clear, educational visualization of how VaR and ES behave under different market conditions and levels of volatility.
-
 
 ## Features
 
@@ -18,10 +16,8 @@ Visualize risk metrics with interactive plots and dynamic summaries. It provides
 -   **Automatic VaR & ES calculation** with dynamic interpretation\
 -   **Error handling (`req()` and validation)** ensures smooth runtime
 
-
 ## Dashboard Preview
 
 ### U.S. Market Simulation
 
 ![US Simulation Screenshot](screenshots/sc1.png) ![US Simulation Screenshot](screenshots/sc2.png)
-
