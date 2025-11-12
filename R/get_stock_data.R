@@ -3,8 +3,6 @@
 # Function to download stock price data from Yahoo Finance
 # ==========================================
 
-library(quantmod)
-
 get_stock_data <- function(symbol, start_date = Sys.Date() - 365*3) {
   
   df_xts <- quantmod::getSymbols(
