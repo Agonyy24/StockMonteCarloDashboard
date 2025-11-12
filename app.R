@@ -39,7 +39,7 @@ ui <- fluidPage(
                  # Choosing starting point
                  dateInput(
                    "start_date",
-                   label = "Select Start Date:",
+                   label = "Select Data From:",
                    value = Sys.Date() - 365 * 3,   # default: 3 years
                    min = as.Date("2010-01-01"),
                    max = Sys.Date() - 1
@@ -107,7 +107,7 @@ ui <- fluidPage(
                  # Choosing data starting point
                  dateInput(
                    "pl_start",
-                   label = "Select Start Date:",
+                   label = "Select Data From:",
                    value = Sys.Date() - 365 * 3, # default: 3 years
                    min = as.Date("2010-01-01"),
                    max = Sys.Date() - 1
@@ -213,7 +213,7 @@ ui <- fluidPage(
                  # Choosing starting point
                  dateInput(
                    "start_date_t",
-                   label = "Select Start Date:",
+                   label = "Select Data From:",
                    value = Sys.Date() - 365 * 3,   # default: 3 years
                    min = as.Date("2010-01-01"),
                    max = Sys.Date() - 1

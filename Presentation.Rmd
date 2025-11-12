@@ -63,7 +63,7 @@ simulate_montecarlo <- function(prices, days = 252, paths = 1000) {
     stop("Not enough data to simulate.")
   }
   
-  # Calculate log returns - choice of log returns will be explained on next     slide
+  # Calculate log returns - choice of log returns will be explained on next slide
   returns <- diff(log(prices))
   # Metrics needed to simulate market moves based on normal distribution
   mu <- mean(returns, na.rm = TRUE)
