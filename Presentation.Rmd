@@ -63,7 +63,7 @@ simulate_montecarlo <- function(prices, days = 252, paths = 1000) {
     stop("Not enough data to simulate.")
   }
   
-  # Calculate log returns - choice of log returns will be explained on next slide
+  # Calculate log returns - choice of log returns will be explained on next     slide
   returns <- diff(log(prices))
   # Metrics needed to simulate market moves based on normal distribution
   mu <- mean(returns, na.rm = TRUE)
@@ -77,6 +77,8 @@ simulate_montecarlo <- function(prices, days = 252, paths = 1000) {
   
   # Convert to cumulative prices
   sim_prices <- S0 * exp(apply(sim, 2, cumsum))
+  # We use cumulative sums of log-returns because log transforms 
+  # multiplication of price factors into simple addition.
   
   return(sim_prices)
 ```
@@ -91,7 +93,7 @@ $$
 
 -   They reduce the impact of large price jumps.\
 -   They are **symmetric** – an increase and a decrease of the same percentage     have equal weight.\
--   They can be easily summed over time.\
+-   **They can be easily summed over time.**\
 -   They lead to smoother, more realistic simulations.
 
 ## Symmetry of Logarithmic Returns
