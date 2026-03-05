@@ -9,13 +9,11 @@ Visualize risk metrics with interactive plots and dynamic summaries. It provides
 
 ## Features
 
--   **US Market Simulation** — Monte Carlo based on Yahoo Finance data  
+-   **US Market Simulation** - Monte Carlo based on Yahoo Finance data  
 
--   **Polish Market Simulation** — Monte Carlo based on Stooq.pl data  
+-   **Polish Market Simulation** - Monte Carlo based on Stooq.pl data  
 
--   **Volatile Market (Student-t)** — heavy-tailed simulation for extreme risk scenarios
-
--   **Dark theme UI** (*Bootswatch: Darkly*) for professional visual clarity
+-   **Volatile Market (Student-t)** - heavy-tailed simulation for extreme risk scenarios
 
 -   **Automatic VaR & ES calculation** with dynamic interpretation
 
