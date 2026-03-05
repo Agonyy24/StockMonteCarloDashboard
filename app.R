@@ -2,7 +2,7 @@ library(shiny)
 library(bslib)
 library(quantmod)
 
-# --- Loading Functions  ---
+# Loading Functions
 
 source("R/simulate_montecarlo.R")
 source("R/simulate_montecarlo_t.R")
@@ -19,7 +19,7 @@ ui <- fluidPage(
   navbarPage(
     "📊 Monte Carlo Dashboard",
     
-    # --- Tab 1: US Monte Carlo Simulation ---
+    # Tab 1: US Monte Carlo Simulation
     tabPanel("US Market Simulation",
              sidebarLayout(
                sidebarPanel(
@@ -47,7 +47,7 @@ ui <- fluidPage(
                  
                  # Days to simulate slider
                  sliderInput(
-                   "days", "Days to Simulate:",
+                   "days", "Days to Simulate Starting Today:",
                    min = 50, max = 725, value = 252, step = 15
                  ),
                  
@@ -61,7 +61,7 @@ ui <- fluidPage(
                  br(), br(),
                  
                  # --- Results section ---
-                 h4("📉 Calculated Risk Metrics:"),
+                 h4("Calculated Risk Metrics:"),
                  tags$div(
                    style = "background-color:#222; padding:10px; border-radius:8px; 
              border:1px solid #444; color:#f8f9fa; font-family: monospace;",
@@ -77,7 +77,7 @@ ui <- fluidPage(
              )
     ),
     
-    # --- Tab 2: Polish Market Simulation ---
+    # Tab 2: Polish Market Simulation
     tabPanel("Polish Market Simulation",
              sidebarLayout(
                sidebarPanel(
@@ -115,7 +115,7 @@ ui <- fluidPage(
                  
                  # Days to sim
                  sliderInput(
-                   "pl_days", "Days to Simulate:",
+                   "pl_days", "Days to Simulate Starting Today:",
                    min = 50, max = 725, value = 252, step = 15
                  ),
                  
@@ -127,7 +127,7 @@ ui <- fluidPage(
                  actionButton("pl_run", "Run Simulation", class = "btn-primary"),
                  br(), br(),
                  
-                 h4("📉 Calculated Risk Metrics:"),
+                 h4("Calculated Risk Metrics:"),
                  tags$div(
                    style = "background-color:#222; padding:10px; border-radius:8px; 
                         border:1px solid #444; color:#f8f9fa; font-family: monospace;",
@@ -143,57 +143,7 @@ ui <- fluidPage(
              )
     ),
     
-    # --- Tab 3: VaR & ES Explanation ---
-    tabPanel("Understanding VaR & ES",
-             
-             h3("Understanding Value at Risk (VaR) and Expected Shortfall (ES)"),
-             br(),
-             
-             h4("🔹 What is Value at Risk (VaR)?"),
-             p("Value at Risk (VaR) is a statistical measure that estimates how much a portfolio 
-            could lose over a specific period of time with a given confidence level. 
-            For example, a 95% VaR of -10% means there is only a 5% chance that 
-            losses will exceed 10% during the next period."),
-             
-             tags$blockquote(
-               "In other words: VaR answers the question — 
-            'How bad can things get, with 95% confidence?'"
-             ),
-             
-             h4("🔹 What is Expected Shortfall (ES)?"),
-             p("Expected Shortfall (also known as Conditional VaR) goes one step further. 
-            It measures the average loss that would occur if the loss does exceed the VaR threshold. 
-            This gives a better picture of tail risk — 
-            the severity of the worst-case scenarios."),
-             
-             tags$blockquote(
-               "In short: ES tells us how bad the 'really bad days' can be."
-             ),
-             
-             h4("🔹 How This Simulation Works"),
-             p("In our Monte Carlo simulation, we generate thousands of random price paths 
-            based on the historical volatility and average return of a stock. 
-            From these simulated outcomes, we calculate potential future prices 
-            and use them to estimate VaR and ES values. 
-            The histogram in the main tab shows the range of possible future prices — 
-            with VaR and ES marked on the left tail of the distribution."),
-             
-             tags$div(
-               style = "margin-top:20px; padding:15px; border-left:4px solid #3498db; background-color:#1a1a1a; border-radius:8px;",
-               HTML("
-                <b>Example:</b><br>
-                • 95% VaR = -18% → There is only a 5% chance that losses exceed 18%.<br>
-                • 95% ES = -24% → On average, the worst 5% of cases lose about 24%.<br><br>
-                VaR gives the threshold, while ES gives the expected loss beyond that threshold.
-                ")
-             ),
-             
-             br(),
-             p(em("Both VaR and ES are commonly used in quantitative finance and risk management 
-               to understand the potential downside of investments."))
-    ),
-    
-    # --- Tab 4: Student-t Monte Carlo ---
+    # Tab 3: Student-t Monte Carlo
     tabPanel("US Volatile Market Simulation",
              sidebarLayout(
                sidebarPanel(
@@ -221,7 +171,7 @@ ui <- fluidPage(
                  
                  # Days to simulate slider
                  sliderInput(
-                   "days_t", "Days to Simulate:",
+                   "days_t", "Days to Simulate Starting Today:",
                    min = 50, max = 725, value = 252, step = 15
                  ),
                  
@@ -240,8 +190,7 @@ ui <- fluidPage(
                  actionButton("run_t", "Run Simulation", class = "btn-primary"),
                  br(), br(),
                  
-                 # --- Results section ---
-                 h4("📉 Calculated Risk Metrics:"),
+                 h4("Calculated Risk Metrics:"),
                  tags$div(
                    style = "background-color:#222; padding:10px; border-radius:8px; 
              border:1px solid #444; color:#f8f9fa; font-family: monospace;",
@@ -255,6 +204,56 @@ ui <- fluidPage(
                  plotOutput("histPlot_t", height = "300px")
                )
              )
+    ),
+    
+    # Tab 4: VaR & ES Explanation
+    tabPanel("Understanding VaR & ES",
+             
+             h3("Understanding Value at Risk (VaR) and Expected Shortfall (ES)"),
+             br(),
+             
+             h4("🔹 What is Value at Risk (VaR)?"),
+             p("Value at Risk (VaR) is a statistical measure that estimates how much a portfolio 
+            could lose over a specific period of time with a given confidence level. 
+            For example, a 95% VaR of -10% means there is only a 5% chance that 
+            losses will exceed 10% during the next period."),
+             
+             tags$blockquote(
+               "In other words: VaR answers the question — 
+            'How bad can things get, with 95% confidence?'"
+             ),
+             
+             h4("🔹 What is Expected Shortfall (ES)?"),
+             p("Expected Shortfall (also known as Conditional VaR) goes one step further. 
+            It measures the average loss that would occur if the loss does exceed the VaR threshold. 
+            This gives a better picture of tail risk - 
+            the severity of the worst-case scenarios."),
+             
+             tags$blockquote(
+               "In short: ES tells us how bad the 'really bad days' can be."
+             ),
+             
+             h4("🔹 How This Simulation Works"),
+             p("In my Monte Carlo simulation, we generate thousands of random price paths 
+            based on the historical volatility and average return of a stock. 
+            From these simulated outcomes, we calculate potential future prices 
+            and use them to estimate VaR and ES values. 
+            The histogram in the main tab shows the range of possible future prices - 
+            with VaR and ES marked on the left tail of the distribution."),
+             
+             tags$div(
+               style = "margin-top:20px; padding:15px; border-left:4px solid #3498db; background-color:#1a1a1a; border-radius:8px;",
+               HTML("
+                <b>Example:</b><br>
+                • 95% VaR = -18% → There is only a 5% chance that losses exceed 18%.<br>
+                • 95% ES = -24% → On average, the worst 5% of cases lose about 24%.<br><br>
+                VaR gives the threshold, while ES gives the expected loss beyond that threshold.
+                ")
+             ),
+             
+             br(),
+             p(em("Both VaR and ES are commonly used in quantitative finance and risk management 
+               to understand the potential downside of investments."))
     )
   )
 )
@@ -264,7 +263,7 @@ ui <- fluidPage(
 
 server <- function(input, output) {
 
-  # --- Tab 1: US Monte Carlo Simulation ---
+  # Tab 1: US Monte Carlo Simulation
   
   observeEvent(input$run, {
     
@@ -284,7 +283,7 @@ server <- function(input, output) {
       paste("Monte Carlo Simulation for", toupper(input$stock))
     })
     
-    # --- Price path plot ---
+    # Price path plot
     output$mcPlot <- renderPlot({
       par(bg = "#222222", col.axis = "white", col.lab = "white", col.main = "white", fg = "white")
       matplot(sim, type = "l", lty = 1, col = "lightyellow",
@@ -301,7 +300,7 @@ server <- function(input, output) {
              bty = "n")
     })
     
-    # --- Hist with VaR & ES ---
+    # Hist with VaR & ES
     output$histPlot <- renderPlot({
       par(bg = "#222222", col.axis = "white", col.lab = "white", col.main = "white", fg = "white")
       hist(returns, breaks = 40, border = "black",
@@ -325,7 +324,7 @@ server <- function(input, output) {
              bty = "n")
     })
     
-    # --- Risk measurement output ---
+    # Risk measurement output
     output$riskMetrics <- renderPrint({
       cat("Value at Risk (95%):", round(VaR_95 * 100, 2), "%\n")
       cat("Expected Shortfall (95%):", round(ES_95 * 100, 2), "%\n")
@@ -333,7 +332,7 @@ server <- function(input, output) {
     })
   })
   
-  # --- Tab 2: Polish market Monte Carlo simulation ---
+  # Tab 2: Polish market Monte Carlo simulation
   
   observeEvent(input$pl_run, {
     
@@ -377,7 +376,7 @@ server <- function(input, output) {
              bty = "n")
     })
     
-    # --- Hist with VaR & ES ---
+    # Hist with VaR & ES
     output$pl_histPlot <- renderPlot({
       par(bg = "#222222", col.axis = "white", col.lab = "white", col.main = "white", fg = "white")
       hist(returns_pl, breaks = 40, border = "black",
@@ -401,7 +400,7 @@ server <- function(input, output) {
              bty = "n")
     })
     
-    # --- Risk measurement output ---
+    # Risk measurement output
     output$pl_riskMetrics <- renderPrint({
       cat("Value at Risk (95%):", round(VaR_95_pl * 100, 2), "%\n")
       cat("Expected Shortfall (95%):", round(ES_95_pl * 100, 2), "%\n")
@@ -409,7 +408,7 @@ server <- function(input, output) {
     })
   })
   
-  # --- Tab 4: US Volatile Market Monte Carlo Simulation ---
+  # Tab 4: US Volatile Market Monte Carlo Simulation
   
   observeEvent(input$run_t, {
     
@@ -446,7 +445,7 @@ server <- function(input, output) {
              bty = "n")
     })
     
-    # --- Hist with VaR & ES ---
+    # Hist with VaR & ES
     output$histPlot_t <- renderPlot({
       par(bg = "#222222", col.axis = "white", col.lab = "white", col.main = "white", fg = "white")
       hist(returns_t, breaks = 40, border = "black",
@@ -470,7 +469,7 @@ server <- function(input, output) {
              bty = "n")
     })
     
-    # --- Risk measurement output ---
+    # Risk measurement output
     output$riskMetrics_t <- renderPrint({
       cat("Value at Risk (95%):", round(VaR_95_t * 100, 2), "%\n")
       cat("Expected Shortfall (95%):", round(ES_95_t * 100, 2), "%\n")

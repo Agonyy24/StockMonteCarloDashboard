@@ -3,10 +3,11 @@ title: "Monte Carlo Simulation Dashboard – Documentation & Presentation"
 author: "Jakub Gołąb"
 date: "`r Sys.Date()`"
 output:
-  revealjs::revealjs_presentation:
-    theme: black
-    transition: fade
-    center: false
+  html_document:
+    theme: darkly
+    toc: true
+    toc_float: true
+    highlight: tango
 ---
 
 ```{r setup, include=FALSE}
@@ -24,25 +25,19 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Application Structure
 
-::::: {style="display: flex; justify-content: space-between;"}
-::: {style="width: 48%;"}
 **Main tabs in the dashboard:**
 
 1.  US Market Simulation\
 2.  Polish Market Simulation\
 3.  Student-t (Volatile) Market\
 4.  Understanding VaR & ES
-:::
 
-::: {style="width: 48%;"}
 **Key features:**
 
 -   Live data downloading\
 -   Customizable simulation period\
 -   Dark theme UI (*Bootswatch: Darkly*)\
 -   Automatic VaR & ES calculation with dynamic interpretation\
-:::
-:::::
 
 ## Monte Carlo Method
 
@@ -92,7 +87,7 @@ $$
 **Why log-returns?**\
 
 -   They reduce the impact of large price jumps.\
--   They are **symmetric** – an increase and a decrease of the same percentage     have equal weight.\
+-   They are **symmetric** – an increase and a decrease of the same percentage have equal weight.\
 -   **They can be easily summed over time.**\
 -   They lead to smoother, more realistic simulations.
 
@@ -105,7 +100,7 @@ $$
 
 **Interpretation:**\
 
-$$r_{\text{down}} = -r_{\text{up}}$$  This makes statistical modeling more stable and mathematically consistent.
+$$r_{\text{down}} = -r_{\text{up}}$$ This makes statistical modeling more stable and mathematically consistent.
 
 ## Polish Data Downloading Function
 
@@ -136,6 +131,7 @@ get_polish_data <- function(symbol, start_date = Sys.Date() - 365*3) {
 ![US Simulation Screenshot](screenshots/sc3.png)
 
 ## Student-t Volatile Market
+
 \
 
 **Simulation using Student-t distribution:**
@@ -145,14 +141,13 @@ get_polish_data <- function(symbol, start_date = Sys.Date() - 365*3) {
 -   VaR and ES are noticeably higher than under normal distribution.
 -   Results are shown on the next slides
 
-
 ## Example Volatile Market Simulation (df= 3)
 
 ![Simulation_t Screenshot](screenshots/sc4.png)
 
 ## Influence of Degrees of Freedom (df)
 
-  The parameter `df` controls how **heavy** the tails of the distribution       are.\
+The parameter `df` controls how **heavy** the tails of the distribution are.\
 
 | df    | Market Type     | Interpretation                     |
 |-------|-----------------|------------------------------------|
@@ -166,42 +161,32 @@ get_polish_data <- function(symbol, start_date = Sys.Date() - 365*3) {
 
 ![VarES hist](screenshots/sc5.png)
 
-
 ## Interpretation of Example Results
 
-<div style="display: flex; justify-content: space-between; align-items: center;">
+<img src="screenshots/sc6.png" width="95%"/>
 
-<div style="width: 50%; text-align: center;">
-  <img src="screenshots/sc6.png" width="95%">
-</div>
+<strong>Interpretation:</strong>
 
-<div style="width: 45%;">
-  <strong>Interpretation:</strong>
-
-  - In 5% of cases, losses exceed **9.27%**.  
-  - The average loss in those worst 5% of cases is **19.67%**.  
-  - The mean expected return is **49.87%**.
-</div>
-
-</div>
+-   In 5% of cases, losses exceed **9.27%**.\
+-   The average loss in those worst 5% of cases is **19.67%**.\
+-   The mean expected return is **49.87%**.
 
 ## Conclusions
+
 \
 
-<div style="text-align: justify;">
-
-The simulation results demonstrate that market prediction is highly dependent on the historical period used for parameter estimation.
-Since the model assumes that future returns follow the same statistical properties as past data, its predictive power is significantly limited.
-Nevertheless, this program makes it easy to explore key risk metrics such as VaR and ES which are essential for assessing tail risk.
-
-</div>
+::: {style="text-align: justify;"}
+The simulation results demonstrate that market prediction is highly dependent on the historical period used for parameter estimation. Since the model assumes that future returns follow the same statistical properties as past data, its predictive power is significantly limited. Nevertheless, this program makes it easy to explore key risk metrics such as VaR and ES which are essential for assessing tail risk.
+:::
 
 ## Future Improvements
+
 \
 
 -   Portfolio simulation (multi-asset handling).\
 
 ## Used Packages
+
 \
 
 -   [Shiny](https://shiny.posit.co/)
@@ -209,11 +194,9 @@ Nevertheless, this program makes it easy to explore key risk metrics such as VaR
 -   [Bsblib](https://rstudio.github.io/bslib/)
 -   [Revealjs](https://revealjs.com/)
 
-
-
 ## Author
 
 **Jakub Gołąb**\
-Student in Econometrics and Information Technologies – AGH University\
+Student in Econometrics and Information Technologies - AGH University\
 **GitHub:** [Agonyy24](https://github.com/Agonyy24)\
 **LinkedIn:** [Jakub Gołąb](https://www.linkedin.com/in/jakub-golab)

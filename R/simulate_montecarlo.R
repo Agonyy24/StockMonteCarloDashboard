@@ -16,3 +16,4 @@ simulate_montecarlo <- function(prices, days = 252, paths = 1000) {
   sim_prices <- S0 * exp(apply(sim, 2, cumsum))
   return(sim_prices)
 }
+
